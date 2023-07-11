@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import PropType from 'prop-types';
-import ContactForm from './ContactForm/ContactForm';
-import Filter from './Filter/Filter';
-import ContactList from './ContactList/ContactList';
-import css from './App.module.css';
+import ContactForm from '../ContactForm/ContactForm';
+import Filter from '../Filter/Filter';
+import ContactList from '../ContactList/ContactList';
+import { Container } from './App.styled';
 
 const LS_KEY = 'contacts';
 
@@ -55,7 +55,7 @@ export function App() {
   };
 
   return (
-    <div className={css.container}>
+    <Container>
       <h1>Phone book</h1>
       <ContactForm onAddContact={handleAddContact} />
       <h2>Contacts</h2>
@@ -64,7 +64,7 @@ export function App() {
         contacts={filter ? handleFilterAbonent() : contacts}
         handleDeleteContact={handleDeleteContact}
       />
-    </div>
+    </Container>
   );
 }
 
