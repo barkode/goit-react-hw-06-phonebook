@@ -1,4 +1,6 @@
-.container {
+import styled from '@emotion/styled';
+
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
@@ -16,14 +18,14 @@
     inset -8px -8px 8px rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.3);
   background: #e8eff5;
-}
+`;
 
-.field-name {
+export const FieldName = styled.p`
   font-weight: 600;
   font-size: larger;
-}
+`;
 
-.input {
+export const Input = styled.input`
   padding: 10px;
   margin: 20px;
   box-shadow: inset #abacaf 0 0 0 2px;
@@ -38,17 +40,17 @@
   font-size: 16px;
   font-weight: 400;
   transition: all 0.2s ease;
-}
-.input:hover {
-  box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 2px;
-}
-.input:focus {
-  background: #fff;
-  outline: 0;
-  box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 3px;
-}
 
-.button {
+  :hover {
+    box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 2px;
+  }
+  :focus {
+    background: #fff;
+    outline: 0;
+    box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 3px;
+  }
+`;
+export const Button = styled.button`
   display: inline-block;
   outline: 0;
   appearance: none;
@@ -64,15 +66,16 @@
   font-weight: 400;
   height: 36px;
   transition: all 150ms ease-in-out 0s;
-}
 
-.button:hover {
-  color: rgb(255, 255, 255);
-  background-color: rgb(17, 97, 73);
-  box-shadow: rgb(19 170 82 / 40%) 0px 2px 3px, rgb(195 231 202) 0px 0px 0px 3px;
-}
+  :hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(17, 97, 73);
+    box-shadow: rgb(19 170 82 / 40%) 0px 2px 3px,
+      rgb(195 231 202) 0px 0px 0px 3px;
+  }
 
-.button:active {
-  background-color: #12752e;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-}
+  :active {
+    background-color: #12752e;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+`;

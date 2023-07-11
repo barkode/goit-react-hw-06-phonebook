@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import PropType from 'prop-types';
-import css from './ContactForm.module.css';
+import { Button, FieldName, Form, Input } from './ContactForm.styled';
 
 function ContactForm({ onAddContact }) {
   const [name, setName] = useState('');
@@ -40,9 +40,9 @@ function ContactForm({ onAddContact }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={css.container}>
-      <p className={css['field-name']}>Abonent name</p>
-      <input
+    <Form onSubmit={handleSubmit}>
+      <FieldName>Abonent name</FieldName>
+      <Input
         type="text"
         name="name"
         pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я])?[a-zA-Zа-яА-Я]*)*$"
@@ -51,10 +51,9 @@ function ContactForm({ onAddContact }) {
         value={name}
         onChange={handleChange}
         required
-        className={css.input}
       />
-      <p className={css['field-name']}>Abonent phone number</p>
-      <input
+      <FieldName>Abonent phone number</FieldName>
+      <Input
         type="tel"
         name="number"
         pattern="\+?\d{1,4}?[\-.\s]?\(?\d{1,3}?\)?[\-.\s]?\d{1,4}[\-.\s]?\d{1,4}[\-.\s]?\d{1,9}"
@@ -63,14 +62,11 @@ function ContactForm({ onAddContact }) {
         value={number}
         onChange={handleChange}
         required
-        className={css.input}
       />
       <p>
-        <button type="submit" className={css.button}>
-          Add contact
-        </button>
+        <Button type="submit">Add contact</Button>
       </p>
-    </form>
+    </Form>
   );
 }
 
