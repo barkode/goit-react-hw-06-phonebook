@@ -1,15 +1,17 @@
-.label {
+import styled from '@emotion/styled';
+
+export const Label = styled.div`
   display: block;
   margin-bottom: 10px;
   color: #666;
-}
+`;
 
-.field-name {
+export const FieldName = styled.p`
   font-weight: 600;
   font-size: larger;
-}
+`;
 
-.input {
+export const Input = styled.input`
   width: 300px;
   padding: 10px;
   margin-bottom: 20px;
@@ -26,13 +28,13 @@
   font-size: 16px;
   font-weight: 400;
   transition: all 0.2s ease;
-}
 
-.input:hover {
-  box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 2px;
-}
-.input:focus {
-  background: #fff;
-  outline: 0;
-  box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 3px;
-}
+  :hover {
+    box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 2px;
+  }
+  :focus {
+    background: #fff;
+    outline: 0;
+    box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 3px;
+  }
+`;

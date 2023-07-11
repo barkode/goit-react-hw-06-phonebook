@@ -1,20 +1,19 @@
 import PropType from 'prop-types';
-import css from './Filter.module.css';
+import { FieldName, Input, Label } from './Filter.styled';
 
 const Filter = ({ filter, onFilterChange }) => {
   return (
-    <div className={css.label}>
-      <p className={css['field-name']}>Find abonent by Name</p>
-      <input
+    <Label>
+      <FieldName>Find abonent by Name</FieldName>
+      <Input
         type="text"
         name="filter"
         title="To find abonent enter they name"
         placeholder="Searching ....."
         value={filter}
         onChange={onFilterChange}
-        className={css.input}
       />
-    </div>
+    </Label>
   );
 };
 
