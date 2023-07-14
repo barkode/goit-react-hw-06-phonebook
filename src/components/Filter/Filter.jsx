@@ -1,7 +1,19 @@
 import PropType from 'prop-types';
+import React from 'react';
 import { FieldName, Input, Label } from './Filter.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilter } from 'redux/contactsSlice';
+import { getFilter } from 'redux/selectors';
 
-const Filter = ({ filter, onFilterChange }) => {
+const Filter = () => {
+  const filter = useSelector(getFilter);
+  const dispatch = useDispatch();
+
+  const handleChangeFilter = e => {
+    const { value } = e.target;
+    dispatch(setFilter(value.toLowerCase().trim()));
+  };
+
   return (
     <Label>
       <FieldName>Find abonent by Name</FieldName>
@@ -11,7 +23,7 @@ const Filter = ({ filter, onFilterChange }) => {
         title="To find abonent enter they name"
         placeholder="Searching ....."
         value={filter}
-        onChange={onFilterChange}
+        onChange={handleChangeFilter}
       />
     </Label>
   );
@@ -20,6 +32,6 @@ const Filter = ({ filter, onFilterChange }) => {
 export default Filter;
 
 Filter.propTypes = {
-  filter: PropType.string.isRequired,
-  onFilterChange: PropType.func.isRequired,
+  filter: PropType.string,
+  onFilterChange: PropType.func,
 };
