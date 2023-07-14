@@ -1,10 +1,24 @@
 import PropType from 'prop-types';
+import React from 'react';
 import { Button, List, ListItem } from './ContactList.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts, getFilter } from 'redux/selectors';
+import { deleteContact } from 'redux/contactsSlice';
 
-function ContactList({ contacts, handleDeleteContact }) {
+function ContactList() {
+  const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
+  const filter = useSelector(getFilter);
+
+  const handleDeleteContact = id => dispatch(deleteContact(id));
+
+  const filterContact = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
+
   return (
     <List>
-      {contacts.map(({ id, name, number }) => {
+      {filterContact.map(({ id, name, number }) => {
         return (
           <ListItem key={id}>
             {name} || {number}
@@ -32,5 +46,5 @@ ContactList.propTypes = {
       number: PropType.string.isRequired,
     })
   ),
-  handleDeleteContact: PropType.func.isRequired,
+  handleDeleteContact: PropType.func,
 };
