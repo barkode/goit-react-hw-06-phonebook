@@ -1,11 +1,17 @@
-import { useState } from 'react';
-import { nanoid } from 'nanoid';
-import PropType from 'prop-types';
+import propTypes from 'prop-types';
+import React, { useState } from 'react';
 import { Button, FieldName, Form, Input } from './ContactForm.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts } from 'redux/selectors';
+import { addContact } from 'redux/contactsSlice';
+import { nanoid } from '@reduxjs/toolkit';
 
-function ContactForm({ onAddContact }) {
+function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -21,22 +27,29 @@ function ContactForm({ onAddContact }) {
     }
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (name !== '' && number !== '') {
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    if (name.trim() !== '' && number.trim() !== '') {
+      const isExistingContact = contacts.some(
+        contact => contact.name.toLowerCase() === name.toLowerCase()
+      );
+
+      if (isExistingContact) {
+        alert(`${name} is already in contacts`);
+        return;
+      }
+
       const newContact = {
         id: nanoid(),
         name: name.trim(),
         number: number.trim(),
       };
-      onAddContact(newContact);
-      reset();
-    }
-  };
 
-  const reset = () => {
-    setName('');
-    setNumber('');
+      dispatch(addContact(newContact));
+      setName('');
+      setNumber('');
+    }
   };
 
   return (
@@ -73,12 +86,7 @@ function ContactForm({ onAddContact }) {
 export default ContactForm;
 
 ContactForm.propTypes = {
-  newContact: PropType.arrayOf(
-    PropType.shape({
-      id: PropType.string.isRequired,
-      name: PropType.string.isRequired,
-      number: PropType.string.isRequired,
-    })
-  ),
-  onAddContact: PropType.func.isRequired,
+  name: propTypes.string,
+  number: propTypes.string,
+  onSubmit: propTypes.func,
 };
