@@ -10,12 +10,11 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import contactsReducer from './contactsSlice';
-import { CONTACTS } from '../utils/constants';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: [CONTACTS],
+  whitelist: ['contacts'],
 };
 
 const persistedReducer = persistReducer(persistConfig, contactsReducer);
